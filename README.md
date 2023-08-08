@@ -382,3 +382,54 @@ getHour - Возвращает текущее значение часов.
 getMin - Возвращает текущее значение минут.
 
 getSec - Возвращает текущее значение секунд.
+
+# Создание своих модулей
+Как пишутся модули.
+
+### Создание модуля и установка
+Откройте исходники в NetBeans
+
+Создайте класс в com.kisel.boa.lib.modules, и назовите так как ваш модуль. Под этим именем он будет импортироваться.
+
+Шаблон:
+```
+package com.kisel.boa.lib.modules;
+
+import com.kisel.boa.lib.StringValue;
+import com.kisel.boa.lib.Function;
+import com.kisel.boa.lib.ArrayValue;
+import com.kisel.boa.lib.NumberValue;
+import com.kisel.boa.lib.Value;
+import com.kisel.boa.lib.Functions;
+import com.kisel.boa.lib.Variables;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public final class std implements Module {
+
+    @Override
+    public void init() {
+        Functions.set("ИмяФункции", new Function() {
+            Тело функции
+            return NumberValue.ZERO; //Если функция ничего не возвращает
+            return ЗначениеИлиПеременная //Если функция что-то возвращает
+        });
+        Variables.set("ИмяПеременной", new Number/StringValue(Значение));
+    }
+}
+```
+После написания удалите импорты которые так и не использовали.
+
+Соберите. Замените старый C:\Titanoboa\boa\boa.jar на новый.
+
+Публикуйте на github в виде файла .java(Не скомпилированного файла класса). И в readme.md пишите о том как добавить: 
+```
+Откройте исходники titanoboa в NetBeans
+
+Закиньте файл модуля в com.kisel.boa.lib.modules.
+
+Соберите. Замените старый C:\Titanoboa\boa\boa.jar на новый.
+
+Храните исходники, чтобы пересобрать с добавлением других модулей.
+```
+К создателю модуля, хранение исходников Titanoboa тоже относится.
