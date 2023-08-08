@@ -8,7 +8,7 @@ import com.kisel.boa.lib.modules.Module;
  */
 public final class UseStatement implements Statement {
 
-    private static final String PACKAGE = "com.annimon.ownlang.lib.modules.";
+    private static final String PACKAGE = "com.kisel.boa.lib.modules.";
     
     public final Expression expression;
     
