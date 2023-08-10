@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/annimon/ownlang/Main.java</file>
-            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/annimon/ownlang/lib/ObjectValue.java</file>
-            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/annimon/ownlang/parser/ast/ClassDeclarationStatement.java</file>
+            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/kisel/boa/lib/modules/canvas.java</file>
+            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/kisel/boa/lib/modules/fs.java</file>
+            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/kisel/boa/lib/modules/DateTime.java</file>
+            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/kisel/boa/lib/modules/math.java</file>
+            <file>file:/C:/Users/2022/Desktop/Titanoboa/src/com/kisel/boa/lib/NumberValue.java</file>
         </group>
     </open-files>
 </project-private>

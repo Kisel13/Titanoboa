@@ -43,6 +43,14 @@ public final class std implements Module {
             }
         });
         Functions.set("rand", new Rand());
+        Functions.set("trim", args -> {
+            if (args.length != 1) {
+                throw new IllegalArgumentException("trim function expects a single string argument");
+            }
+            String original = args[0].asString();
+            String trimmed = original.trim();
+            return new StringValue(trimmed);
+        });
         Functions.set("echo", args -> {
             final StringBuilder sb = new StringBuilder();
             for (Value arg : args) {
@@ -65,7 +73,28 @@ public final class std implements Module {
             }
             return new StringValue("");
         });
-
+        Functions.set("len", args -> {
+            if (args.length == 1 && args[0] instanceof StringValue) {
+                StringValue stringValue = (StringValue) args[0];
+                return new NumberValue(stringValue.asString().length());
+            } else {
+                throw new RuntimeException("len function expects a single string argument");
+            }
+        });
+        Functions.set("toString", args -> {
+            if (args.length == 1) {
+                return new StringValue(args[0].asString());
+            } else {
+                throw new RuntimeException("toString function expects a single argument");
+            }
+        });
+        Functions.set("toInt", args -> {
+            if (args.length == 1) {
+                return new NumberValue(args[0].asNumber());
+            } else {
+                throw new RuntimeException("toInt function expects a single argument");
+            }
+        });
         Functions.set("wait", args -> {
             System.out.println("Press Enter to continue...");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

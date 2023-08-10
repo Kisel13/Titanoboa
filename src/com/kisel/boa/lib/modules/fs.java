@@ -67,8 +67,13 @@ public final class fs implements Module {
             deleteDirectory(dirname);
             return NumberValue.ONE;
         });
+        Functions.set("runFile", args -> {
+            if (args.length != 1) throw new IllegalArgumentException("Ожидается один аргумент");
+            String filename = args[0].asString();
+            runFile(filename);
+            return NumberValue.ONE;
+        });
     }
-
     private String readFile(String filename) {
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -148,5 +153,13 @@ public final class fs implements Module {
             }
         }
         file.delete();
+    }
+    private void runFile(String filename) {
+        try {
+            Process process = Runtime.getRuntime().exec(filename);
+            process.waitFor();
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
 }

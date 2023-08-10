@@ -17,9 +17,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.sound.sampled.*;
 
 /**
  *
@@ -52,6 +55,12 @@ public final class canvas implements Module {
         Functions.set("drawstring", new DrawString());
         Functions.set("color", new SetColor());
         Functions.set("repaint", new Repaint());
+        Functions.set("playMusic", args -> {
+            if (args.length != 1) throw new IllegalArgumentException("Ожидается один аргумент");
+            String filename = args[0].asString();
+            playMusic(filename);
+            return NumberValue.ONE;
+        });
         
         Variables.set("VK_UP", new NumberValue(KeyEvent.VK_UP));
         Variables.set("VK_DOWN", new NumberValue(KeyEvent.VK_DOWN));
@@ -92,7 +101,16 @@ public final class canvas implements Module {
     private static void clip(int x, int y, int w, int h) {
         graphics.setClip(x, y, w, h);
     }
-    
+    private static void playMusic(String filename) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filename));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+            ex.printStackTrace();
+        }
+    }   
     private static Function intConsumer4Convert(IntConsumer4 consumer) {
         return args -> {
             if (args.length != 4) throw new RuntimeException("Four args expected");
